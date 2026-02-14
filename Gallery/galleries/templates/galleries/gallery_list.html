@@ -1,0 +1,46 @@
+{% extends 'galleries/base.html' %}
+{% load static %} {% block title %}Galerias de Clientes{% endblock %}
+
+{% block content %}
+    <h1>Galerias de Clientes</h1>
+
+    <div class="search-form">
+        <form method="GET" action="{% url 'gallery_list' %}">
+            <input type="text" 
+                   name="q" 
+                   placeholder="Buscar galerias por título ou descrição..." 
+                   value="{{ search_query|default:'' }}">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
+    {% if not galleries and search_query %}
+        <p>Nenhuma galeria encontrada para: "{{ search_query }}"</p>
+    {% elif not galleries %}
+        <p>Ainda não há galerias públicas.</p>
+    {% endif %}
+
+    <div class="gallery-card-grid">
+        {% for gallery in galleries %}
+            <a href="{% url 'gallery_detail' gallery.id %}" class="gallery-card">
+                
+                <div class="card-image-wrapper">
+                    {% if gallery.get_cover_image %}
+                        <img src="{{ gallery.get_cover_image }}" alt="Capa da galeria {{ gallery.title }}">
+                    {% else %}
+                        <img src="{% static 'galleries/placeholder.png' %}" alt="Galeria vazia">
+                    {% endif %}
+                    
+                    {% if gallery.is_protected %}
+                        <span class="card-badge">🔒 Privada</span>
+                    {% endif %}
+                </div>
+                
+                <div class="card-content">
+                    <h3>{{ gallery.title }}</h3>
+                </div>
+
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,8 @@
+Django==5.2.8
+gunicorn
+whitenoise
+python-dotenv
+django-storages[b2]
+b2sdk
+Pillow
+psycopg2-binary

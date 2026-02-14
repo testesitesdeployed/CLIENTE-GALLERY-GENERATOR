@@ -1,0 +1,376 @@
+/* --- 1. Configuração Global e Tema Escuro --- */
+:root {
+    --color-bg: #121212;         /* Fundo principal (preto) */
+    --color-surface: #1e1e1e;   /* Fundo dos "cards" (cinza escuro) */
+    --color-text: #E0E0E0;      /* Texto principal (cinza claro) */
+    --color-text-secondary: #AAAAAA; /* Texto secundário (cinza) */
+    --color-primary: #00A99D;   /* Cor de destaque (ex: links) */
+    --color-border: #333;
+    
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Lato', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    margin: 0;
+    padding: 0;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 25px;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: var(--font-heading);
+    color: #ffffff;
+    font-weight: 700;
+}
+
+p {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+a:hover {
+    color: #ffffff;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 2rem 0;
+}
+
+/* --- 2. Cabeçalho (Header) --- */
+.main-header {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+.main-header .logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+}
+.main-header .logo:hover {
+    color: var(--color-primary);
+}
+
+
+/* --- 3. Lista de Galerias (gallery_list) --- */
+.gallery-list-item {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-list-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.gallery-list-item h2 {
+    margin-top: 0;
+    border: none;
+}
+.gallery-list-item h2 a {
+    color: #ffffff;
+    text-decoration: none;
+}
+.gallery-list-item h2 a:hover {
+    color: var(--color-primary);
+}
+
+/* --- 4. Detalhe da Galeria (gallery_detail) --- */
+.gallery-detail-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+.gallery-detail-header h1 {
+    font-size: 2.5rem;
+}
+
+.back-link a {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--color-text-secondary);
+}
+.back-link a:hover {
+    color: var(--color-primary);
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.photo-item {
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    overflow: hidden; /* Garante que a imagem não vaze */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+}
+
+.photo-item a[data-fancybox] {
+    display: block; /* Faz o link ocupar o espaço */
+    flex-grow: 1;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover img {
+    transform: scale(1.05);
+}
+
+.photo-actions {
+    text-align: center;
+    padding: 15px;
+    background-color: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+}
+
+.download-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+.download-link:hover {
+    background-color: #007a70; /* Tom mais escuro do primário */
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* --- 5. Formulário de Senha (password_prompt) --- */
+.password-form-container {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 30px;
+    max-width: 500px;
+    margin: 40px auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.password-form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.password-form-container label {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.password-form-container input[type="password"] {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #444;
+    background-color: #333;
+    color: var(--color-text);
+    border-radius: 5px;
+}
+
+.password-form-container button[type="submit"] {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: var(--font-heading);
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.password-form-container button[type="submit"]:hover {
+    background-color: #007a70;
+}
+
+.error-message {
+    color: #ff6b6b; /* Vermelho para erros */
+    font-weight: bold;
+    background-color: rgba(255, 107, 107, 0.1);
+    border: 1px solid #ff6b6b;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* --- 6. Responsividade --- */
+@media (max-width: 768px) {
+    .main-container {
+        margin: 20px auto;
+        padding: 15px;
+    }
+    .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .gallery-detail-header h1 {
+        font-size: 2rem;
+    }
+    .main-header .logo {
+        font-size: 1.2rem;
+    }
+    .header-container {
+        padding: 0 15px;
+    }
+}
+
+
+/* --- 7. Estilos do Formulário de Busca --- */
+.search-form {
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    text-align: center;
+}
+.search-form form {
+    display: flex;
+    gap: 10px;
+}
+.search-form input[type="text"] {
+    flex-grow: 1;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #444;
+    background-color: #333;
+    color: var(--color-text);
+    border-radius: 5px;
+    font-family: var(--font-body);
+}
+.search-form button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: var(--font-heading);
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.search-form button:hover {
+    background-color: #007a70;
+}
+
+/* Emblema de galeria privada */
+.password-protected-badge {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: var(--color-text-secondary);
+    background-color: #333;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+
+
+
+/* --- 8. Estilos dos Cards da Galeria (gallery_list) --- */
+.gallery-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.gallery-card {
+    display: block;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card-image-wrapper {
+    width: 100%;
+    height: 220px; /* Altura fixa para a imagem de capa */
+    position: relative;
+    background-color: #333; /* Fundo enquanto a imagem carrega */
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz a imagem cobrir o espaço */
+}
+
+.card-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-family: var(--font-heading);
+}
+
+/* Remove o CSS antigo da lista, se ainda existir */
+.gallery-list-item {
+    display: none; 
+}

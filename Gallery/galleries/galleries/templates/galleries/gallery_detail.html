@@ -1,0 +1,40 @@
+{% extends 'galleries/base.html' %}
+
+{% block title %}{{ gallery.title }} - Photon Gallery{% endblock %}
+
+{% block content %}
+<div class="gallery-detail-header">
+    <h1>{{ gallery.title }}</h1>
+    {% if gallery.description %}
+        <p>{{ gallery.description }}</p>
+    {% endif %}
+    <p class="back-link">
+        <a href="{% url 'gallery_list' %}">&larr; Voltar para todas as galerias</a>
+    </p>
+</div>
+
+<div class="photo-grid">
+
+    {% for photo in gallery.photos.all %}
+    <div class="photo-item">
+        
+        <a href="{{ photo.image.url }}" 
+           data-fancybox="gallery-{{ gallery.id }}" 
+           data-caption="{{ photo.caption|default:'Sem legenda' }}">
+           
+            <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:'Foto' }}">
+        </a>
+
+        <div class="photo-actions">
+            <a href="{{ photo.image.url }}" 
+               download 
+               class="download-link">
+               Baixar Foto
+            </a>
+        </div>
+    </div>
+    {% empty %}
+        <p style="text-align: center; grid-column: 1 / -1;">Não há fotos nesta galeria ainda.</p>
+    {% endfor %}
+
+</div> {% endblock %}

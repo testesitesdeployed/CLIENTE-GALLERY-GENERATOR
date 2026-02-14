@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Photon Gallery{% endblock %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'galleries/style.css' %}">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <a href="{% url 'gallery_list' %}" class="logo">
+                📸 PHOTON GALLERY
+            </a>
+        </div>
+    </header>
+
+    <main class="main-container">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script>
+        // Script do Fancybox (o mesmo que corrigimos anteriormente)
+        Fancybox.bind('[data-fancybox]', {
+            Panzoom: {
+                wheel: "zoom",
+                dragToMove: true,
+                maxScale: 15,
+                zoomOnWheel: true, // Importante
+                zoomFactor: 3      // Importante
+            },
+            Toolbar: {
+                display: {
+                    left: ["infobar"],
+                    middle: [ "zoomIn", "zoomOut", "toggle1to1", ],
+                    right: [ "download", "thumbs", "close", ],
+                },
+            }
+        });
+    </script>
+</body>
+</html>
