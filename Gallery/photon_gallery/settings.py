@@ -35,7 +35,9 @@ raw_allowed = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1')
 ALLOWED_HOSTS = [h.strip() for h in raw_allowed.split(',') if h.strip()]
 
 # Build CSRF_TRUSTED_ORIGINS from allowed hosts (add scheme if missing)
-CSRF_TRUSTED_ORIGINS = []
+CSRF_TRUSTED_ORIGINS = [
+    'https://localhost:8000',
+]
 for host in ALLOWED_HOSTS:
     if host.startswith('http://') or host.startswith('https://'):
         CSRF_TRUSTED_ORIGINS.append(host)
